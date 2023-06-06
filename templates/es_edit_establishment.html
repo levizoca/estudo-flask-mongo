@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card-wrapper">
+
+    <div class="card">
+
+        <form action="{{ url_for('edit_es_establishment') }}" method="POST">
+            <input type="hidden" name="idEstablishment" value="{{ result._source._id }}">
+        
+            <label for="cnpjCompleto">CNPJ Completo:</label>
+            <input type="number" name=cnpjCompleto value="{{ result._source.CNPJ_COMPLETO }}" placeholder="CNPJ Completo" class="field" required autofocus>
+        
+            <label for="cep">CEP:</label>
+            <input type="number" name=cep value="{{ result._source.CEP }}" placeholder="CEP" class="field" required autofocus>
+        
+            <label for="email">Email:</label>
+            <input type="email" name=email value="{{ result._source.CORREIO_ELETRÔNICO }}" placeholder="email@email.com" class="field" required autofocus>
+        
+            <label for="nomeFantasia">Nome Fantasia:</label>
+            <input type="text" name=nomeFantasia value="{{ result._source.NOME_FANTASIA }}" placeholder="Nome Fantasia" class="field" required autofocus>
+        
+            <label for="telefone">Telefone:</label>
+            <input type="tel" name=telefone value="{{ result._source.TELEFONE }}" placeholder="Telefone" class="field" required autofocus>
+        
+            <input type="submit" class="btn" value="Update">
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}

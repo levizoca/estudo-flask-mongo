@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="body-table">
+    <div class="">
+        <a type="button" href="{{ url_for('es_add_establishment') }}"><button class="btn">Add establishment</button></a><br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th><strong>CNPJ Completo:</strong></th>
+                    <th><strong>CEP:</strong></th>
+                    <th><strong>Email:</strong></th>
+                    <th><strong>Nome Fantasia:</strong></th>
+                    <th><strong>Telefone:</strong></th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for hit in results['hits']['hits'] %}
+            <tbody>
+                <tr>
+                    <td>{{ hit._source.CNPJ_COMPLETO }}</td>
+                    <td>{{ hit._source.CEP }}</td>
+                    <td>{{ hit._source.CORREIO_ELETRÔNICO }}</td>
+                    <td>{{ hit._source.NOME_FANTASIA }}</td>
+                    <td>{{ hit._source.TELEFONE }}</td>
+                    <td class="btn-td">
+                        <a type="button" href="{{ url_for('edit_es_establishment', idEstablishment=hit._id) }}">
+                            <button>Edit</button>
+                        </a>
+                        <form class="table-form" action="{{ url_for('delete_es_establishment', idEstablishment=hit._id) }}" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

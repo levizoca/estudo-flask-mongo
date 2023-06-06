@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card-wrapper">
+
+    <div class="card">
+
+        <form action="{{ url_for('es_add_establishment') }}" method="POST">
+            <label for="cnpjCompleto">CNPJ Completo:</label>
+            <input type="text" name=cnpjCompleto placeholder="CNPJ Completo" class="field" required autofocus>
+        
+            <label for="cep">CEP:</label>
+            <input type="number" name=cep placeholder="CEP" class="field" required autofocus>
+        
+            <label for="email">Email:</label>
+            <input type="email" name=email placeholder="email@email.com" class="field" required autofocus>
+        
+            <label for="nomeFantasia">Nome Fantasia:</label>
+            <input type="text" name=nomeFantasia placeholder="Nome Fantasia" class="field" required autofocus>
+        
+            <label for="telefone">Telefone:</label>
+            <input type="tel" name=telefone placeholder="Telefone" class="field" required autofocus>
+
+            <p class="error error--hidden"></p>
+        
+            <input type="submit" class="btn" value="Insert">
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}
